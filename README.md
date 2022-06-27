@@ -1,5 +1,4 @@
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
-
 ### Laravel6
 
 #### 对Laravel6进行了小修改（也不算是修改,就算是把常用的东西整合上去）
@@ -26,7 +25,7 @@
 #### 4、重写了异常处理
     文件位置：
         App\Exceptions\Handler
-    
+
 #### 5、整合了Repositories 设计模式
         生成对应文件：
             php artisan init:model-service
@@ -47,4 +46,4 @@
         文件位置：
             App\Traits\Controller\*
         使用：
-            use App\Facades\Controller\***;
+            use App\Facades\Controller\***;66
