@@ -22,8 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  * yjx
  */
 Route::middleware('jwt.auth')->prefix('completion1')->group(function () {
-    Route::post('completion1', 'PhysicsController@YJXphysics');//实验1答题
-    Route::get('pdf1', 'PhysicsController@pdf1');//实验1pdf
+    Route::post('completion1', 'PhysicsController@YJXphysics');//实验1答题（数据分析）
+   // Route::get('pdf1', 'PhysicsController@pdf1');//实验1pdf
 });
 
 /**
@@ -34,4 +34,14 @@ Route::prefix('users')->group(function () {
     Route::post('login', 'UsersController@login');  //用户登录
     Route::post('registered', 'UsersController@registered');  //用户注册
     Route::post('again', 'UsersController@again');  //修改用户密码
+});
+/**
+ * @author yjx
+ * 下拉框模块
+ */
+Route::prefix('show')->group(function () {
+    Route::get('showlevel', 'PhysicsController@yjxshowxxlevel');  //查看层次下拉框
+    Route::get('showyear', 'PhysicsController@yjxshowxxyear');  //查看级数下拉款
+    Route::get('showclass', 'PhysicsController@yjxshowxxclass');  //查看班级下拉框
+    Route::get('showspec', 'PhysicsController@yjxshowxxspec');  //查看专业下拉框
 });

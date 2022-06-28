@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -41,8 +42,25 @@ class User extends Authenticatable implements JWTSubject
     public static function createUser($array = [])
     {
         try {
+       //dd($array);
+            $student_id = self::create([
+                'student_id'=>$array['student_id'],
+                'password'=>$array['password']
+            ])->id;
+//dd(6657);
+            $res = DB::table('student')->insert(
+              [
+               'student_name'=>$array['student_name'],
+               'student_level' => $array['student_level'],
+               'student_spec'=> $array['student_spec'],
+               'student_year'=>$array['student_year'],
+               'student_class' => $array['student_class'],
+               'student_num'=> $array['student_id'],
+               'student_teacher' => $array['student_teacher']
+              ]
+            );
 
-            $student_id = self::create($array)->id;
+
             return $student_id ?
                 $student_id :
                 false;

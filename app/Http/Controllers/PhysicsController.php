@@ -35,6 +35,12 @@ class PhysicsController extends Controller
         $xz11 = $request['celeven'];
         $xz12 = $request['ctwelve'];
 //dd($xz12);
+
+        $rr = Physics::rr($student_id);
+        if ($rr != 0){
+            return json_fail('重复答题!', null, 150);
+        }
+
         $res1 =Physics::establish(
             $student_id,
             $pd1,
@@ -130,8 +136,53 @@ class PhysicsController extends Controller
         $res2 = Student::grade($student_id, $grade, $grade_xp);
         Student::statechange($student_id);
         return $res1 ?
-            json_success('操作成功!', null, 200) :
+            json_success('操作成功!', $res1, 200) :
             json_fail('操作失败!', null, 100);
 
     }
+
+    public function yjxshowxxlevel()
+    {
+        //$level = $request['level'];
+        $res = Physics::yjxshowxxlevel();
+
+        return $res?
+            json_success('查询成功!',$res,  200):
+            json_fail('查询失败',null, 100 ) ;
+
+    }
+    public function yjxshowxxclass()
+    {
+
+        $res = Physics::yjxshowxxclass();
+
+        return $res?
+            json_success('查询成功!',$res,  200):
+            json_fail('查询失败',null, 100 ) ;
+
+    }
+    public function yjxshowxxspec()
+    {
+
+        $res = Physics::yjxshowxxspec();
+
+        return $res?
+            json_success('查询成功!',$res,  200):
+            json_fail('查询失败',null, 100 ) ;
+
+    }
+    public function yjxshowxxyear()
+    {
+
+        $res = Physics::yjxshowxxyear();
+
+        return $res?
+            json_success('查询成功!',$res,  200):
+            json_fail('查询失败',null, 100 ) ;
+
+    }
+
+
+
+
 }

@@ -41,7 +41,7 @@ class Physics extends Model
             //dd($student_id);
           $r =  DB::table('experiment')->select()->where('student_id' ,'=',$student_id)->count();
             if ($r !=0){
-                return false;
+                 return false['code:150']  ;//json_fail('重复提交!', null, 150);
             }else {
 
                 $res = self::create(
@@ -136,7 +136,96 @@ class Physics extends Model
             logError('搜索错误', [$e->getMessage()]);
             return false;
         }
+    }
+
+    /**
+     * @return false|\Illuminate\Support\Collection
+     * yjx
+     * 层次
+     */
+    public static function yjxshowxxlevel()
+    {
+        try {
+            $res = DB::table('level')->select()->get();
+
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('搜索错误', [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    /**
+     * @return false|\Illuminate\Support\Collection
+     * yjx
+     * 班级
+     */
+    public static function yjxshowxxclass()
+    {
+        try {
+            $res = DB::table('class')->select()->get();
+
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('搜索错误', [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    /**
+     * @return false|\Illuminate\Support\Collection
+     * yjx
+     * 专业
+     */
+    public static function yjxshowxxspec()
+    {
+        try {
+            $res = DB::table('specialized')->select()->get();
+
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('搜索错误', [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    /**
+     * @return false|\Illuminate\Support\Collection
+     * yjx
+     * 年纪
+     */
+    public static function yjxshowxxyear()
+    {
+        try {
+            $res = DB::table('grade')->select()->get();
+
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('搜索错误', [$e->getMessage()]);
+            return false;
+        }
+    }
 
 
+    public static function rr($student_id)
+    {
+        try {
+            $res = DB::table('experiment')->select()->where('student_id' ,'=',$student_id)->count();
+
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('搜索错误', [$e->getMessage()]);
+            return false;
+        }
     }
 }
