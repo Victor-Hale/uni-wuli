@@ -44,4 +44,6 @@ Route::prefix('show')->group(function () {
     Route::get('showyear', 'PhysicsController@yjxshowxxyear');  //查看级数下拉款
     Route::get('showclass', 'PhysicsController@yjxshowxxclass');  //查看班级下拉框
     Route::get('showspec', 'PhysicsController@yjxshowxxspec');  //查看专业下拉框
+
+    Route::post('showxxallin', 'TeacherShowController@yjxshowxxallin');  //教师端3连查询
 });

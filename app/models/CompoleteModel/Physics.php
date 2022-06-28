@@ -37,12 +37,6 @@ class Physics extends Model
         $xz12
     ){
         try {
-           // DB::table('experiment')->create
-            //dd($student_id);
-        /*  $r =  DB::table('experiment')->select()->where('student_id' ,'=',$student_id)->count();
-            if ($r !=0){
-                 return false['code:150']  ;//json_fail('重复提交!', null, 150);*/
-
 
                 $res = self::create(
                 //
@@ -273,4 +267,7 @@ class Physics extends Model
             return false;
         }
     }
+
+
+
 }

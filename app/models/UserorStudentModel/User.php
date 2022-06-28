@@ -50,7 +50,7 @@ class User extends Authenticatable implements JWTSubject
 //dd(6657);
 
             $res = Student::es($array);
-            
+
             return $student_id ?
                 $student_id :
                 false;
