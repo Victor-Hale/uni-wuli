@@ -66,6 +66,10 @@ class PhysicsController extends Controller
         );
 //dd(6657);
 
+        //表入库变为1
+        $resruku = Physics::ruku($student_id);
+
+
         $grade = 0;
         $grade_xp = 0;
 
@@ -132,8 +136,14 @@ class PhysicsController extends Controller
 
 
         $grade = $grade + $grade_xp;
+
+        $tianfen = Physics::tianfen($student_id,$grade,$grade_xp);
 //dd($grade);
+        //表入库变为2
+        $resruku2 = Physics::ruku2($student_id);
+//dd(6657);
         $res2 = Student::grade($student_id, $grade, $grade_xp);
+
         Student::statechange($student_id);
         return $res1 ?
             json_success('操作成功!', $res1, 200) :

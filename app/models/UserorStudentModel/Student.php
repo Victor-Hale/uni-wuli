@@ -42,12 +42,35 @@ class Student extends Model
 
                 ->update(['grade' => $grade,'grade_xp' => $grade_xp]);
 
-            $res11 = DB::table('experiment')->update(['grade' => $grade,'grade_xp' => $grade_xp]);
             return $res ?
                 $res :
                 false;
         } catch (\Exception $e) {
             logError('搜索错误', [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    public static function es($array)
+    {
+        try {
+            $res = self::create(
+                [
+                    'student_name'=>$array['student_name'],
+                    'student_level' => $array['student_level'],
+                    'student_spec'=> $array['student_spec'],
+                    'student_year'=>$array['student_year'],
+                    'student_class' => $array['student_class'],
+                    'student_num'=> $array['student_id'],
+                    'student_teacher' => $array['student_teacher']
+                ]
+            );
+
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('创建错误', [$e->getMessage()]);
             return false;
         }
     }

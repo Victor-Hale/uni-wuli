@@ -48,19 +48,9 @@ class User extends Authenticatable implements JWTSubject
                 'password'=>$array['password']
             ])->id;
 //dd(6657);
-            $res = DB::table('student')->insert(
-              [
-               'student_name'=>$array['student_name'],
-               'student_level' => $array['student_level'],
-               'student_spec'=> $array['student_spec'],
-               'student_year'=>$array['student_year'],
-               'student_class' => $array['student_class'],
-               'student_num'=> $array['student_id'],
-               'student_teacher' => $array['student_teacher']
-              ]
-            );
 
-
+            $res = Student::es($array);
+            
             return $student_id ?
                 $student_id :
                 false;

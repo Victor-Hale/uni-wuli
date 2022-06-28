@@ -39,10 +39,10 @@ class Physics extends Model
         try {
            // DB::table('experiment')->create
             //dd($student_id);
-          $r =  DB::table('experiment')->select()->where('student_id' ,'=',$student_id)->count();
+        /*  $r =  DB::table('experiment')->select()->where('student_id' ,'=',$student_id)->count();
             if ($r !=0){
-                 return false['code:150']  ;//json_fail('重复提交!', null, 150);
-            }else {
+                 return false['code:150']  ;//json_fail('重复提交!', null, 150);*/
+
 
                 $res = self::create(
                 //
@@ -69,11 +69,11 @@ class Physics extends Model
                         'xz12' => $xz12,
 
                         'student_id' => $student_id,
-                        'state' => 1,
+                        'state' => 0,
                     ]
 
                 );
-            }
+
             return $res ?
                 $res :
                 false;
@@ -225,6 +225,51 @@ class Physics extends Model
                 false;
         } catch (\Exception $e) {
             logError('搜索错误', [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    public static function ruku($student_id)
+    {
+        try {
+            $res = self::where('student_id',$student_id)->update(['state' => 1]);
+
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('改变入库1错误', [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    public static function ruku2($student_id)
+    {
+        try {
+            $res = self::where('student_id',$student_id)->update(['state' => 2]);
+//dd(22);
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('改变入库2错误', [$e->getMessage()]);
+            return false;
+        }
+    }
+
+    public static function tianfen($student_id,$grade,$grade_xp)
+    {
+        try {
+            $res = self::where('student_id',$student_id)->update([
+                'grade' => $grade,
+                'grade_xp' => $grade_xp
+            ]);
+
+            return $res ?
+                $res :
+                false;
+        } catch (\Exception $e) {
+            logError('改变入库1错误', [$e->getMessage()]);
             return false;
         }
     }
