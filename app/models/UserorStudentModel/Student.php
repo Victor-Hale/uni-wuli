@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Student extends Model
 {
+
     protected $table = "student";
     public $timestamps = true;
     protected $primaryKey = "id";
@@ -73,5 +74,12 @@ class Student extends Model
             logError('创建错误', [$e->getMessage()]);
             return false;
         }
+
+    public  static  function zlcSelectStudent($student_id){
+        $res =DB::table("student")->where("student_num",$student_id)->select(
+            "student_name","student_num","student_level", "student_year","student_spec","student_class"
+        )->get();
+        return $res;
+
     }
 }

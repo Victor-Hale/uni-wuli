@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 
 /**
  * 物理数据
@@ -46,4 +48,11 @@ Route::prefix('show')->group(function () {
     Route::get('showspec', 'PhysicsController@yjxshowxxspec');  //查看专业下拉框
 
     Route::post('showxxallin', 'TeacherShowController@yjxshowxxallin');  //教师端3连查询
+
+Route::middleware('jwt.auth')->group(function () {
+    Route::post("selectstudent",'informationFindController@zlcSelectstudent');//查看个人学生信息
+    Route::post("danbai","PendulumController@zlcDanbai");//单摆
+    Route::post("js","PendulumController@zlcJs");//单摆计算题
+
+
 });
